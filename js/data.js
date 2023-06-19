@@ -84,5 +84,28 @@ const chart = new Chart(ctx, config);
   latitudeHTML.textContent=latitude;  
  }
 
+ let plot3 = (data) => {  }
+
+let load3 = (data) => {  }
+  
+let loadInocar = () => {   let URL = 'https://www.inocar.mil.ec/mareas/consultan.php';
+
+fetch(URL)
+     .then(response => response.text())
+      .then(data => {
+         const parser = new DOMParser();
+         const xml = parser.parseFromString(data, "text/html");
+         console.log(xml);
+      })
+      .catch(console.error); }
+
+(
+  function () { 
+  	
+  	loadInocar();
+  }
+
+)();
+
 
 
