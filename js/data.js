@@ -120,7 +120,7 @@ fetch(URL)
 (
   function () { 
   	
-  	loadInocar();
+  	//loadInocar();
   }
 
 )();
