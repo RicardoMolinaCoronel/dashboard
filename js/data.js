@@ -1,11 +1,10 @@
 
-
 let plot = (data) => { 
   const ctx = document.getElementById('myChart');
   const dataset = {
     labels: data.hourly.time, /* ETIQUETA DE DATOS */
     datasets: [{
-        label: 'Temperatura semanal', /* ETIQUETA DEL GRÁFICO */
+        label: 'Temperatura', /* ETIQUETA DEL GRÁFICO */
         data: data.hourly.temperature_2m, /* ARREGLO DE DATOS */
         fill: false,
         borderColor: 'rgb(75, 192, 192)',
@@ -20,15 +19,32 @@ const chart = new Chart(ctx, config);
 
  }
  
- 
- 
-
 let plot1 = (data) => { 
   const ctx = document.getElementById('myChart1');
   const dataset = {
     labels: data.daily.time, /* ETIQUETA DE DATOS */
     datasets: [{
-        label: 'Temperatura semanal', /* ETIQUETA DEL GRÁFICO */
+        label: 'Temperatura', /* ETIQUETA DEL GRÁFICO */
+        data: data.daily.temperature_2m_max, /* ARREGLO DE DATOS */
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+    }]
+};
+const config = {
+  type: 'bar',
+  data: dataset,
+};
+const chart = new Chart(ctx, config);
+
+ }
+
+ let plot2 = (data) => { 
+  const ctx = document.getElementById('myChart2');
+  const dataset = {
+    labels: data.daily.time, /* ETIQUETA DE DATOS */
+    datasets: [{
+        label: 'Indíce rayos UV', /* ETIQUETA DEL GRÁFICO */
         data: data.daily.uv_index_max, /* ARREGLO DE DATOS */
         fill: false,
         borderColor: 'rgb(75, 192, 192)',
@@ -43,8 +59,6 @@ const chart = new Chart(ctx, config);
 
  }
 
-
-
 let load=(data) =>{
 
   let timezone=data["timezone"]
@@ -55,8 +69,18 @@ let load=(data) =>{
   let latitudeHTML=document.getElementById("latitude")    
   latitudeHTML.textContent=latitude;  
 
+  let longitude=data["longitude"]
+  let longitudeHTML=document.getElementById("longitude")    
+  longitudeHTML.textContent=longitude;  
+
+  let elevation=data["elevation"]
+  let elevationHTML=document.getElementById("elevation")    
+  elevationHTML.textContent=elevation; 
+  
   plot(data)
   plot1(data)
+  plot2(data)
+
  }
 
  let loadInocar = () => {   
@@ -80,7 +104,7 @@ fetch(URL)
 
   let meteo = localStorage.getItem('meteo');
   if(meteo == null) {
-  let URL = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m&daily=uv_index_max&timezone=auto";
+  let URL = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,relativehumidity_2m&daily=temperature_2m_max,uv_index_max&timezone=auto";
   fetch(URL)
     .then((response) => response.json())
     .then((data) => {
@@ -106,19 +130,6 @@ fetch(URL)
 
 
 
- let plot3 = (data) => {  }
-
-let load3 = (data) => {  }
-  
-
-/*
-(
-  function () { 
-  	
-  	loadInocar();
-  }
-
-)();*/
 
 
 
