@@ -119,7 +119,7 @@ fetch(URL)
     load(JSON.parse(meteo));
   }
     
-  loadInocar();
+  //loadInocar();
 
 })();
 
