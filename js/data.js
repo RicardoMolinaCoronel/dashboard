@@ -85,7 +85,7 @@ let load=(data) =>{
 
 
    
-      
+  
 
 })();
 
@@ -101,8 +101,8 @@ let load=(data) =>{
 let load3 = (data) => {  }
   
 let loadInocar = () => {   
- // let URL_proxy = 'https://cors-anywhere.herokuapp.com/po';
- let URL_proxy='http://localhost:8080/' 
+  let URL_proxy = 'https://cors-anywhere.herokuapp.com/';
+ //let URL_proxy='http://localhost:8080/' 
  let URL = URL_proxy+'https://www.inocar.mil.ec/mareas/consultan.php';
 
 fetch(URL)
@@ -120,7 +120,7 @@ fetch(URL)
 (
   function () { 
   	
-  	//loadInocar();
+  	loadInocar();
   }
 
 )();
